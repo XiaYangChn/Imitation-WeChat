@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ChatOnline</title>
+			
+		<!-- 外部引用 -->
+        <link rel="stylesheet" type="text/css" href="css/lib/jquery.scrollbar.css"/>
+        <script src="js/lib/jquery.js"></script>
+        <script src="js/lib/jquery.scrollbar.js"></script>
+		<!-- Coder引用 -->
+		<link rel="stylesheet" type="text/css" href="css/global.css"/>
+		<link rel="stylesheet" type="text/css" href="css/panel.css"/>
+		<link rel="stylesheet" type="text/css" href="css/chatArea.css"/>
+        <script src="js/addition.js"></script>
+	</head>
+	
+	<body>
+		<div id="main">
+			<div id="main-inner">
+			
+				<!--BEGIN panel-->
+				<div id="panel">
+					<!--BEGIN header-->
+					<div id="header">
+						<div class="avatar">
+							<img class="img" src="img/default.png"/>
+						</div>
+						<div class="info">
+							<h3 class="nickname">姓名</h3>
+							<a id="userOpt" href="#" onclick="panel.clickOptBut()">
+								<i class="opt-but"></i>
+							</a>
+						</div>
+					</div>
+					
+						<!--BEGIN panel-menu-->
+						<div class="panel-menu">
+							<div class="panel-menu-dropdown">
+								<div class="panel-menu-item">
+									<a tabindex="-1" href="javascript:;" ng-click="loginout()" title="个人信息">
+	            						<i class=" menuicon menuicon_info"></i>个人信息   
+									</a>
+								</div>
+								<div class="panel-menu-item">
+									<a tabindex="-1" href="javascript:;" title="退出">
+	        							<i class="last_child menuicon menuicon_quit"></i>退出       
+									</a>
+								</div>
+							</div>
+						</div>
+						<!--END panel-menu-->
+					<!--END header-->
+					
+					<!--BEGIN searchBar-->
+					<div id="searchBar">
+						<i id="search-img"></i>
+						<input id="search-keyword" type="text" placeholder="搜索" onchange="panel.searchFriend()" />
+						
+						<div id="search-result">
+							<div class="search-result-container scrollbar-macosx">
+								<h4 class="search-result-title">搜索结果</h4>
+							
+								<div class="search-result-item">
+									<div class="avatar">
+										<img class="img" src="img/default.png"/>
+									</div>
+									<div class="info">
+										<h3 class="nickname">
+											<span class="nickname-text">
+												nickname friend
+											</span>
+										</h3>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<!--END searchBar-->
+					
+					<!--BEGIN tab-->
+					<div id="tab">
+						<div id="chat" class="tab-item">
+							<a href="#" title="聊天" onclick="tabCtrl.showChat()">
+								<i class="tab-item-but tab-chat"></i>
+							</a>
+						</div>
+						<div id="friends" class="tab-item" onclick="tabCtrl.showFriends()">
+							<a href="#" title="朋友">
+								<i class="tab-item-but tab-friends"></i>
+							</a>
+						</div>
+						<div id="group" class="tab-item" onclick="tabCtrl.showGroup()">
+							<a href="#" title="群组">
+								<i class="tab-item-but tab-group"></i>
+							</a>
+						</div>
+					</div>
+					<!--END tab-->
+					
+					<!--BEGIN chat-list-->
+					<div id="chat-list">
+						<div id="chat-list-content" class="scrollbar-macosx">
+							
+							<h4 class="item-title">聊天</h4>
+							
+							<!-- chat-item 模板 -->
+							<div id="ci-fi-sss" class="chat-item" tabindex="-1" onclick="panel.openChatArea(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											sss
+										</span>
+									</h3>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<!--END chat-list-->
+					
+					<!--BEGIN friend-list-->
+					<div id="friend-list">
+						<div id="friend-list-content" class="scrollbar-macosx">
+							
+							<h4 class="item-title">朋友</h4>
+								
+							<!-- friend-item 模板 -->
+							<div id="fi-nickname_friend" class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							
+							<!--******************************************************************-->
+							
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_friend
+										</span>
+									</h3>
+								</div>
+							</div>
+							<!--******************************************************************-->
+						</div>
+					</div>
+					<!--END friend-list-->
+					
+					<!--BEGIN group-list-->
+					<div id="group-list">
+						<div id="group-list-content" class="scrollbar-macosx">
+							<h4 class="item-title">群组</h4>
+								
+							<!-- group-item 模板 -->
+							<div id="gi-nickname_group" class="group-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+								<div class="avatar">
+									<img class="img" src="img/default_group.png"/>
+								</div>
+								<div class="info">
+									<h3 class="nickname">
+										<span class="nickname-text">
+											nickname_group
+										</span>
+									</h3>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<!--END group-list-->
+					
+				</div>	
+				<!--END panel-->
+				
+				<!--BEGIN chatArea-->
+				<div id="chatArea">
+					<div class="chatArea-item" style="display: block;">
+					<!--BEGIN box-hd-->
+					<div class="box-hd">
+						<!--BEGIN chatroom_members-->
+						<div class="chatroom_members">
+							<div class="members">
+								<div class="members_inner scrollbar-macosx">
+									<div class="member opt">
+										<i class="add_members"></i>
+									</div>
+									<div class="member">
+										<img class="avatar" src="img/default.png"/>
+										<p id="member_name" class="nickname"></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--END chatroom_members-->
+						
+						<!--BEGIN title-warp-->
+						<div class="title-warp">
+							<div class="title-content" onclick="chatArea.clickTitle()">
+								<div id="title_text" class="title-text"></div>
+								<i class="title-but"></i>
+							</div>
+						</div>
+						<!--END title-warp-->
+					</div>
+					<!--END box-hd-->
+					
+					<!--BEGIN box-bd-->
+					<div class="box-bd">
+						<div id="message_container_list" class="chat-bd scrollbar-macosx">
+							
+							<!--BEGIN message-container-->
+							
+							<!--END message-container-->
+							
+						</div>
+					</div>
+					<!--END box-bd-->
+					
+					<!--BEGIN box-ft-->
+					<div class="box-ft">
+						<div class="toolbar">
+							<a class="send-emoji send-upBut" href="javascript:;" title="表情"></a>
+							<a class="send-screenshot send-upBut" href="javascript:;" title="截屏"></a>
+							<a class="send-file send-upBut" href="javascript:;" title="传文件"></a>
+						</div>
+						
+						<div class="send-content">
+							<textarea id="send_content" class="send-textarea scrollbar-macosx"></textarea>
+						</div>
+						
+						<div class="send-action">
+							<span class="send-action-tip">
+								按下Ctrl+Enter发送
+							</span>
+							<div class="send-button" href="#" onclick="chatArea.sendMsg()">发送</div>
+						</div>
+					</div>
+					<!--END box-ft-->
+				</div>
+				</div>
+				<!--END chatArea-->
+				
+				<div class="clearBoth"></div>
+			</div>
+		</div>
+		
+		<!--BEGIN template-->
+		<div id="template" style="display: none;">
+			
+			<div id="tp_chat_item">
+				<div class="chat-item" tabindex="-1" onclick="panel.openChatArea(this.id)">
+					<div class="avatar">
+						<img class="img" src="img/default.png"/>
+					</div>
+					<div class="info">
+						<h3 class="nickname">
+							<span class="nickname-text"></span>
+						</h3>
+					</div>
+				</div>
+			</div>
+			
+			<div id="tp_friend_item">
+				<div class="friend-item" tabindex="-1" ondblclick="panel.openChat(this.id)">
+					<div class="avatar">
+						<img class="img" src="img/default.png"/>
+					</div>
+					<div class="info">
+						<h3 class="nickname">
+							<span class="nickname-text"></span>
+						</h3>
+					</div>
+				</div>
+			</div>
+			
+			<div id="tp_message">
+				<div class="message">
+					<div class="message-time">
+						00:00
+					</div>
+					<div class="message-content">
+						<img class="avatar" src="img/default.png"/>
+						<h4 class="msg_name">nickname</h4>
+						<div class="bubble">
+							<div class="bubble-content">
+								<div class="bubble-text">
+									<pre>hello 你好！</pre>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="tp_message_me">
+				<div class="message msg_me">
+					<div class="message-time">
+						00:00
+					</div>
+					<div class="message-content">
+						<img class="avatar" src="img/default.png"/>
+						<h4 class="msg_name"></h4>
+						<div class="bubble">
+							<div class="bubble-content">
+								<div class="bubble-text">
+									<pre></pre>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="tp_message_container">
+				
+				<div class="message-container">
+					<!-- message 模板 -->
+					<div class="message">
+						<div class="message-time">
+							11:17
+						</div>
+						<div class="message-content">
+							<img class="avatar" src="img/default.png"/>
+							<h4 class="msg_name">zxc</h4>
+							<div class="bubble">
+								<div class="bubble-content">
+									<div class="bubble-text">
+										<pre>hello 你好！</pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- message me 模板 -->
+					<div class="message msg_me">
+						<div class="message-time">
+							11:19
+						</div>
+						<div class="message-content">
+							<img class="avatar" src="img/default.png"/>
+							<h4 class="msg_name"></h4>
+							<div class="bubble">
+								<div class="bubble-content">
+									<div class="bubble-text">
+										<pre>你是谁？</pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<!--END template-->
+	</body>
+</html>
+
